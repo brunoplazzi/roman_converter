@@ -1,5 +1,12 @@
-from src.roman_converter import int_to_roman
 import pytest
+import sys
+import os
+
+# Adiciona o caminho do diretório `src` ao PYTHONPATH
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from roman_converter import int_to_roman
+
 
 
 def test_single_digit():
