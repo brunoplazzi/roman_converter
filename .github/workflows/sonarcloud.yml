@@ -43,5 +43,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
           JAVA_HOME: /opt/hostedtoolcache/jdk/17/x64
-          SONAR_SCANNER_JAVA: /opt/hostedtoolcache/jdk/17/x64/bin/java
           SONAR_SCANNER_OPTS: "-Dsonar.java.jdkHome=/opt/hostedtoolcache/jdk/17/x64"
+          SONAR_SCANNER_JAVA: /opt/hostedtoolcache/jdk/17/x64/bin/java
