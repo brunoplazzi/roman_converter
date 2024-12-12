@@ -35,24 +35,10 @@ jobs:
       - name: Verify Java Version
         run: java -version
 
-      - name: Install Sonar Scanner
-        run: |
-          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-          unzip sonar-scanner.zip -d $HOME
-          echo "$HOME/sonar-scanner-4.8.0.2856-linux/bin" >> $GITHUB_PATH
-          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          echo "SONAR_SCANNER_OPTS=-Djava.home=$JAVA_HOME" >> $GITHUB_ENV
-
       - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.6
+        with:
+          projectBaseDir: .
         env:
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-            -Dsonar.organization=$SONAR_ORGANIZATION \
-            -Dsonar.sources=src \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
-            -X
+          SONAR_SCANNER_OPTS: "-Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}"
