@@ -41,7 +41,7 @@ jobs:
           docker system prune -af
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v1.6
+        uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: .
         env:
